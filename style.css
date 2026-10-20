@@ -1,0 +1,412 @@
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #24151a;
+  color: #fff3e8;
+  font-family: "Segoe UI", sans-serif;
+}
+
+main {
+  width: min(900px, 100%);
+  margin: auto;
+  padding: 32px 22px 60px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: #e8cda8;
+  font-size: 11px;
+  letter-spacing: 3px;
+  line-height: 1.8;
+}
+
+h1 {
+  margin: 25px 0 12px;
+  font: 400 clamp(44px, 9vw, 76px) Georgia, serif;
+}
+
+h1 span {
+  color: #e8cda8;
+  font-style: italic;
+}
+
+.intro {
+  max-width: 380px;
+  margin: 20px auto 38px;
+  color: #d4c0b7;
+  line-height: 1.8;
+}
+
+/* Khung thiệp */
+#card {
+  position: relative;
+  display: block;
+  width: min(340px, 85vw);
+  aspect-ratio: 1.2;
+  margin: 0 auto 55px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  perspective: 1200px;
+  cursor: pointer;
+  color: #fff0db;
+  font: inherit;
+  text-align: center;
+}
+
+.cover,
+.inside {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border-radius: 5px;
+}
+
+.inside {
+  background: linear-gradient(135deg, #fff5e4, #ead7bb);
+  color: #39212a;
+  border: 1px solid #d6b98f;
+  padding: 20px;
+}
+
+.cover {
+  z-index: 2;
+  transform-origin: left center;
+  transition: transform 1.1s ease;
+  background: linear-gradient(145deg, #7d3448, #3b1d28);
+  border: 1px solid #d8b68a;
+  box-shadow: 0 20px 40px #0005;
+}
+
+.cover::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid #d8b68a99;
+  pointer-events: none;
+}
+
+#card.open .cover {
+  transform: rotateY(-155deg);
+  pointer-events: none;
+}
+
+.cover-title {
+  font: 36px/1.2 Georgia, serif;
+}
+
+.inside-title {
+  font: 27px/1.3 Georgia, serif;
+}
+
+.small {
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.heart {
+  font-size: 30px;
+  color: #e8cda8;
+}
+
+/* Lời chúc */
+.hidden {
+  display: none;
+}
+
+.letter {
+  margin: 0 auto 65px;
+  padding: clamp(25px, 6vw, 50px);
+  background: #f7efdf;
+  color: #39212a;
+  text-align: left;
+  line-height: 1.9;
+  box-shadow: 0 15px 40px #0004;
+}
+
+.letter h2,
+.album h2,
+footer h2 {
+  font: 400 clamp(28px, 6vw, 42px)/1.3 Georgia, serif;
+}
+
+.letter .eyebrow,
+.album .eyebrow {
+  text-align: center;
+}
+
+.signature {
+  margin-top: 30px;
+  color: #84394b;
+  font: italic 22px Georgia, serif;
+  text-align: right;
+}
+
+/* Album ảnh */
+.album {
+  padding: 25px 0 60px;
+}
+
+.album-subsection {
+  margin-top: 38px;
+}
+
+.album-subsection h3 {
+  margin-bottom: 18px;
+  color: #e8cda8;
+  font: 400 28px/1.3 Georgia, serif;
+}
+
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 30px;
+}
+
+figure {
+  margin: 0;
+  padding: 9px 9px 15px;
+  background: #f7efdf;
+  color: #39212a;
+  box-shadow: 0 10px 25px #0004;
+}
+
+figure:nth-child(odd) {
+  transform: rotate(-1deg);
+}
+
+figure:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: #d8c1b2;
+}
+
+figcaption {
+  padding: 12px 3px 0;
+  font: italic 14px/1.5 Georgia, serif;
+}
+
+footer {
+  padding: 55px 0 20px;
+  border-top: 1px solid #e8cda833;
+}
+
+footer p {
+  color: #d4c0b7;
+}
+
+#readAgain {
+  padding: 12px 18px;
+  border: 1px solid #e8cda8;
+  background: transparent;
+  color: #fff3e8;
+  cursor: pointer;
+}
+
+#readAgain:hover {
+  background: #e8cda8;
+  color: #39212a;
+}
+
+/* Hiển thị đẹp trên màn hình lớn */
+@media (min-width: 700px) {
+  .gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  figure:nth-child(even) {
+    margin-top: 20px;
+  }
+}
+
+/* Hỗ trợ người hạn chế chuyển động */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* Viền trang màu vàng đồng */
+body {
+  border: 5px solid #b98b68;
+  box-shadow: inset 0 0 0 3px #24151a,
+              inset 0 0 0 4px #e8cda866;
+  min-height: 100vh;
+}
+
+/* Họa tiết hoa nhỏ ở hai góc */
+body::before,
+body::after {
+  content: "❧  ✿";
+  position: fixed;
+  z-index: 10;
+  pointer-events: none;
+  color: #c85b6d;
+  font: clamp(35px, 7vw, 65px)/1 Georgia, serif;
+  opacity: 0.55;
+  text-shadow: 0 2px 12px #10070b88;
+}
+
+body::before {
+  top: 12px;
+  left: 12px;
+  transform: rotate(-22deg);
+}
+
+body::after {
+  right: 12px;
+  bottom: 12px;
+  transform: rotate(158deg);
+}
+
+
+/* Phần quà bất ngờ */
+.surprise {
+  text-align: center;
+  padding: 70px 0 80px;
+  border-top: 1px solid #e8cda822;
+}
+
+.surprise-intro {
+  color: #d7c2b8;
+  font: italic 16px/1.8 Georgia, serif;
+  max-width: 440px;
+  margin: 0 auto 24px;
+}
+
+.surprise-button {
+  margin-top: 4px;
+}
+
+.rose-stage {
+  width: min(360px, 90%);
+  height: 390px;
+  margin: 28px auto 0;
+  display: none;
+}
+
+.rose-stage.revealed {
+  display: block;
+}
+
+.rose-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 16px 20px #10090c55);
+}
+
+.rose-petal {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  opacity: 0;
+}
+
+.rose-stage.revealed .rose-petal {
+  animation: petalBloom .9s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+.rose-stage.revealed .petal-1 { animation-delay: .1s; }
+.rose-stage.revealed .petal-2 { animation-delay: .35s; }
+.rose-stage.revealed .petal-3 { animation-delay: .6s; }
+.rose-stage.revealed .petal-4 { animation-delay: .85s; }
+.rose-stage.revealed .petal-5 { animation-delay: 1.1s; }
+.rose-stage.revealed .petal-6 { animation-delay: 1.35s; }
+
+.rose-stem {
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+}
+
+.rose-stage.revealed .rose-stem {
+  animation: stemGrow 1.2s ease-out forwards;
+}
+
+.rose-leaf {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: 0% 100%;
+}
+
+.rose-stage.revealed .rose-leaf {
+  animation: leafGrow .8s ease-out 1s forwards;
+}
+
+.rose-message {
+  color: #e8cda8;
+  font: italic 25px/1.5 Georgia, serif;
+  margin: 0 auto 12px;
+  opacity: 0;
+}
+
+.rose-stage.revealed + .rose-message {
+  animation: messageFade .8s ease 2s forwards;
+}
+
+.rose-submessage {
+  color: #d7c2b8;
+  font: 15px/1.8 Georgia, serif;
+  max-width: 420px;
+  margin: 0 auto;
+  opacity: 0;
+}
+
+.rose-stage.revealed ~ .rose-submessage {
+  animation: messageFade .8s ease 2.3s forwards;
+}
+
+@keyframes petalBloom {
+  from {
+    opacity: 0;
+    transform: scale(.12) rotate(-18deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes stemGrow {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes leafGrow {
+  from {
+    opacity: 0;
+    transform: scale(.1) rotate(-20deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes messageFade {
+  to { opacity: 1; }
+}
+
